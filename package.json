@@ -39,5 +39,9 @@
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1"
+  },
+  "dependencies": {
+    "@material-ui/styles": "^3.0.0-alpha.10",
+    "react-icons": "^3.5.0"
   }
 }
