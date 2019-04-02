@@ -33,7 +33,13 @@ const renderPlaceholders = quantity => {
   }
 }
 
-const Timeline = ({ classes, children, minEvents = 0, placeholder }) => {
+const Timeline = ({
+  children,
+  classes,
+  minEvents = 0,
+  maxEvents = 0,
+  placeholder
+}) => {
   const difference = minEvents - children.length
   const placeholders = renderPlaceholders(difference)
 
@@ -41,18 +47,40 @@ const Timeline = ({ classes, children, minEvents = 0, placeholder }) => {
     <div className={classes.wrapper}>
       <CssBaseline />
       <Grid className={classes.container}>
-        {children.map((child, index) => {
-          return (
-            <Grid
-              key={index}
-              className={classNames({
-                [classes.middle]: index > 0 && index < children.length
-              })}
-            >
-              {child}
-            </Grid>
-          )
-        })}
+        {maxEvents ? (
+          <Fragment>
+            {children.map((child, index) => {
+              return (
+                <Fragment key={index}>
+                  {index < maxEvents && (
+                    <Grid
+                      className={classNames({
+                        [classes.middle]: index > 0 && index < children.length
+                      })}
+                    >
+                      {child}
+                    </Grid>
+                  )}
+                </Fragment>
+              )
+            })}
+          </Fragment>
+        ) : (
+          <Fragment>
+            {children.map((child, index) => {
+              return (
+                <Grid
+                  key={index}
+                  className={classNames({
+                    [classes.middle]: index > 0 && index < children.length
+                  })}
+                >
+                  {child}
+                </Grid>
+              )
+            })}
+          </Fragment>
+        )}
         {minEvents > 0 && difference > 0 && placeholder && (
           <Fragment>
             {placeholders.map((placeholder: Placeholder, index) => (
