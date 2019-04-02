@@ -23,6 +23,10 @@ const App = props => {
         icon={FaRegCalendarCheck}
         title='Agendado'
         subtitle='26/03/2019 09:51'
+        action={{
+          label: 'Ver detalhes...',
+          onClick: () => console.log('test')
+        }}
       />
       <TimelineEvent
         color='#ffcc00'
@@ -33,7 +37,7 @@ const App = props => {
       <TimelineEvent
         color='#9c2919'
         icon={FaBug}
-        title='Processando'
+        title='Erro'
         subtitle='26/03/2019 09:51'
       />
       <TimelineEvent
