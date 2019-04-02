@@ -19,7 +19,7 @@ const styles = {
     textAlign: 'center'
   },
   buttonContainer: {
-    marginTop: 16,
+    margin: '16px auto',
     textAlign: 'center'
   },
   button: {
