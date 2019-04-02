@@ -1,10 +1,10 @@
-import React, { Fragment } from 'react'
+import React, { Children, cloneElement, Fragment } from 'react'
 import classNames from 'classnames'
 import Grid from '@material-ui/core/Grid'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import withStyles from '@material-ui/core/styles/withStyles'
 import 'typeface-roboto'
-import Placeholder from './Placeholder'
+import { PlaceholderSimple, Placeholder } from './Placeholder'
 
 const styles = {
   wrapper: {
@@ -25,7 +25,7 @@ const renderPlaceholders = quantity => {
     let index = 0
 
     while (index < quantity) {
-      placeholders.push(<Placeholder />)
+      placeholders.push(index)
       index++
     }
 
@@ -36,12 +36,22 @@ const renderPlaceholders = quantity => {
 const Timeline = ({
   children,
   classes,
+  simple,
   minEvents = 0,
   maxEvents = 0,
   placeholder
 }) => {
-  const difference = minEvents - children.length
-  const placeholders = renderPlaceholders(difference)
+  const difference = children ? minEvents - children.length : minEvents
+  const placeholders = renderPlaceholders(difference, simple)
+  const childrenWithProps = children
+    ? Children.map(children, (child, index) =>
+        cloneElement(child, {
+          simple,
+          placeholder,
+          first: index === 0
+        })
+      )
+    : []
 
   return (
     <div className={classes.wrapper}>
@@ -49,13 +59,14 @@ const Timeline = ({
       <Grid className={classes.container}>
         {maxEvents ? (
           <Fragment>
-            {children.map((child, index) => {
+            {childrenWithProps.map((child, index) => {
               return (
                 <Fragment key={index}>
                   {index < maxEvents && (
                     <Grid
                       className={classNames({
-                        [classes.middle]: index > 0 && index < children.length
+                        [classes.middle]:
+                          !simple && index > 0 && index < children.length
                       })}
                     >
                       {child}
@@ -67,12 +78,13 @@ const Timeline = ({
           </Fragment>
         ) : (
           <Fragment>
-            {children.map((child, index) => {
+            {childrenWithProps.map((child, index) => {
               return (
                 <Grid
                   key={index}
                   className={classNames({
-                    [classes.middle]: index > 0 && index < children.length
+                    [classes.middle]:
+                      !simple && index > 0 && index < children.length
                   })}
                 >
                   {child}
@@ -83,10 +95,20 @@ const Timeline = ({
         )}
         {minEvents > 0 && difference > 0 && placeholder && (
           <Fragment>
-            {placeholders.map((placeholder: Placeholder, index) => (
-              <Grid key={index} className={classes.middle}>
-                <Placeholder />
-              </Grid>
+            {placeholders.map(placeholder => (
+              <div
+                key={placeholder}
+                className={classNames({ [classes.middle]: !simple })}
+              >
+                {simple ? (
+                  <PlaceholderSimple
+                    first={placeholder === 0}
+                    quantity={childrenWithProps.length}
+                  />
+                ) : (
+                  <Placeholder />
+                )}
+              </div>
             ))}
           </Fragment>
         )}

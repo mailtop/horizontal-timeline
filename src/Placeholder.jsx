@@ -1,6 +1,49 @@
 import React from 'react'
+import withStyles from '@material-ui/core/styles/withStyles'
 
-const Placeholder = props => {
+const styles = {
+  container: {
+    position: 'relative'
+  },
+  circleContainer: {
+    marginRight: 31
+  },
+  barSimple: {
+    position: 'absolute',
+    top: '50%',
+    left: -31,
+    width: 31,
+    height: 3,
+    backgroundColor: '#f2f2f2'
+  }
+}
+
+const Simple = ({ classes, first, quantity }) => {
+  const Bar = () => <div className={classes.barSimple} />
+
+  return (
+    <div className={classes.container}>
+      <div className={classes.circleContainer}>
+        <svg viewBox='0 0 19.05 19.05' height={72} width={72}>
+          <g transform='translate(0 -277.95)'>
+            <circle
+              cx={9.525}
+              cy={287.475}
+              r={9.525}
+              fill='#f2f2f2'
+              strokeWidth={0.193}
+            />
+          </g>
+        </svg>
+      </div>
+      {quantity === 0 ? !first ? <Bar /> : null : <Bar />}
+    </div>
+  )
+}
+
+export const PlaceholderSimple = withStyles(styles)(Simple)
+
+export const Placeholder = props => {
   return (
     <svg width={225} height={187} viewBox='0 0 59.531 49.477' {...props}>
       <g transform='matrix(.99959 0 0 .99838 -100.96 -38.57)'>
@@ -54,5 +97,3 @@ const Placeholder = props => {
     </svg>
   )
 }
-
-export default Placeholder
