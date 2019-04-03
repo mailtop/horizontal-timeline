@@ -1,14 +1,17 @@
-import React, { Children, cloneElement, Fragment } from 'react'
+import React, { Children, cloneElement, Component, Fragment } from 'react'
 import classNames from 'classnames'
+import PerfectScrollbar from 'react-perfect-scrollbar'
 import Grid from '@material-ui/core/Grid'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import withStyles from '@material-ui/core/styles/withStyles'
+import 'react-perfect-scrollbar/dist/css/styles.css'
 import 'typeface-roboto'
 import { PlaceholderSimple, Placeholder } from './Placeholder'
 
 const styles = {
   wrapper: {
-    overflowX: 'auto'
+    position: 'relative',
+    overflow: 'hidden'
   },
   container: {
     display: 'inline-flex',
@@ -33,37 +36,64 @@ const renderPlaceholders = quantity => {
   }
 }
 
-const Timeline = ({
-  children,
-  classes,
-  simple,
-  minEvents = 0,
-  maxEvents = 0,
-  placeholder
-}) => {
-  const difference = children ? minEvents - children.length : minEvents
-  const placeholders = renderPlaceholders(difference, simple)
-  const childrenWithProps = children
-    ? Children.map(children, (child, index) =>
-        cloneElement(child, {
-          simple,
-          placeholder,
-          first: index === 0
-        })
-      )
-    : []
+class Timeline extends Component {
+  componentDidMount() {
+    const scrollbar = this.scrollbar
+    scrollbar.scrollLeft = scrollbar.offsetWidth
+  }
 
-  return (
-    <div className={classes.wrapper}>
-      <CssBaseline />
-      <Grid className={classes.container}>
-        {maxEvents ? (
-          <Fragment>
-            {childrenWithProps.map((child, index) => {
-              return (
-                <Fragment key={index}>
-                  {index < maxEvents && (
+  render() {
+    const {
+      children,
+      classes,
+      height = 265,
+      simple,
+      minEvents = 0,
+      maxEvents = 0,
+      placeholder
+    } = this.props
+    const difference = children ? minEvents - children.length : minEvents
+    const placeholders = renderPlaceholders(difference, simple)
+    const childrenWithProps = children
+      ? Children.map(children, (child, index) =>
+          cloneElement(child, {
+            simple,
+            placeholder,
+            first: index === 0
+          })
+        )
+      : []
+
+    return (
+      <Grid className={classes.wrapper} style={{ height }}>
+        <PerfectScrollbar containerRef={element => (this.scrollbar = element)}>
+          <CssBaseline />
+          <Grid className={classes.container}>
+            {maxEvents ? (
+              <Fragment>
+                {childrenWithProps.map((child, index) => {
+                  return (
+                    <Fragment key={index}>
+                      {index < maxEvents && (
+                        <Grid
+                          className={classNames({
+                            [classes.middle]:
+                              !simple && index > 0 && index < children.length
+                          })}
+                        >
+                          {child}
+                        </Grid>
+                      )}
+                    </Fragment>
+                  )
+                })}
+              </Fragment>
+            ) : (
+              <Fragment>
+                {childrenWithProps.map((child, index) => {
+                  return (
                     <Grid
+                      key={index}
                       className={classNames({
                         [classes.middle]:
                           !simple && index > 0 && index < children.length
@@ -71,50 +101,34 @@ const Timeline = ({
                     >
                       {child}
                     </Grid>
-                  )}
-                </Fragment>
-              )
-            })}
-          </Fragment>
-        ) : (
-          <Fragment>
-            {childrenWithProps.map((child, index) => {
-              return (
-                <Grid
-                  key={index}
-                  className={classNames({
-                    [classes.middle]:
-                      !simple && index > 0 && index < children.length
-                  })}
-                >
-                  {child}
-                </Grid>
-              )
-            })}
-          </Fragment>
-        )}
-        {minEvents > 0 && difference > 0 && placeholder && (
-          <Fragment>
-            {placeholders.map(placeholder => (
-              <div
-                key={placeholder}
-                className={classNames({ [classes.middle]: !simple })}
-              >
-                {simple ? (
-                  <PlaceholderSimple
-                    first={placeholder === 0}
-                    quantity={childrenWithProps.length}
-                  />
-                ) : (
-                  <Placeholder />
-                )}
-              </div>
-            ))}
-          </Fragment>
-        )}
+                  )
+                })}
+              </Fragment>
+            )}
+            {minEvents > 0 && difference > 0 && placeholder && (
+              <Fragment>
+                {placeholders.map(placeholder => (
+                  <Grid
+                    key={placeholder}
+                    className={classNames({ [classes.middle]: !simple })}
+                  >
+                    {simple ? (
+                      <PlaceholderSimple
+                        first={placeholder === 0}
+                        quantity={childrenWithProps.length}
+                      />
+                    ) : (
+                      <Placeholder />
+                    )}
+                  </Grid>
+                ))}
+              </Fragment>
+            )}
+          </Grid>
+        </PerfectScrollbar>
       </Grid>
-    </div>
-  )
+    )
+  }
 }
 
 export default withStyles(styles)(Timeline)
