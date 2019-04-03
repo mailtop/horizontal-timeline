@@ -71,12 +71,6 @@ const TimelineEvent = ({
                 {title}
                 <br />
                 {subtitle}
-                {action && (
-                  <Fragment>
-                    <br />
-                    {action.label}
-                  </Fragment>
-                )}
               </div>
             }
           >
