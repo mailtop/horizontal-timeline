@@ -55,24 +55,24 @@ import { FaBug, FaRegCalendarCheck, FaRegFileAlt } from 'react-icons/fa'
 ### Timeline
 Renders a `div` with the same width as the parent element and creates a horizontal scrollbar according to the number of events
 
-**Props:**
-**# height:** set the size of the component. Default value: `265px`
-**# simple:** if `true`, renders only the icon of the events, as in the second screenshot above. The event `title` and `subtitle` are shown on a tooltip and the `action`, if set, is fired when you click the circle
-**# minEvents:** used to render placeholders for events, if `placeholder` is set to `true`, as shown in the screenshots above
-**# maxEvents:** limit the number of events showed on screen
-**# placeholder:** create the placholders when `minEvents` is set too
+**Props:**  
+**# height:** set the size of the component. Default value: `265px`  
+**# simple:** if `true`, renders only the icon of the events, as in the second screenshot above. The event `title` and `subtitle` are shown on a tooltip and the `action`, if set, is fired when you click the circle  
+**# minEvents:** used to render placeholders for events, if `placeholder` is set to `true`, as shown in the screenshots above  
+**# maxEvents:** limit the number of events showed on screen  
+**# placeholder:** create the placholders when `minEvents` is set too  
 
 ### TimelineEvent
 Renders events inside the `Timeline` wrapper. Any number of these can be created*
 
-**Props**
-**# color:** set the color of the event. Default value: `#e0e0e0`
-**# icon:** renders the icon that identifies the event
-**# title:** renders the main text below of the event
-**# subtitle:** renders the secondary text below the event
-**# action:** an `Object` with two properties:
-*-label:* the text inside the button showed below the event
-*-onClick:* the action fired when the user click the button or the event, if `simple` is set to `true` in the `Timeline` component
+**Props**  
+**# color:** set the color of the event. Default value: `#e0e0e0`  
+**# icon:** renders the icon that identifies the event  
+**# title:** renders the main text below of the event  
+**# subtitle:** renders the secondary text below the event  
+**# action:** an `Object` with two properties:  
+&nbsp;&nbsp;&nbsp;*-label:* the text inside the button showed below the event  
+&nbsp;&nbsp;&nbsp;*-onClick:* the action fired when the user click the button or the event, if `simple` is set to `true` in the `Timeline` component  
 
 **\*** *if* `maxEvents` *is set on the* `Timeline` *component, the number of events showed on screen will be limited to that ammount*
 
