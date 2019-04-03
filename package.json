@@ -1,16 +1,31 @@
 {
   "name": "@mailtop/horizontal-timeline",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "Horizontal timeline component",
-  "main": "build/index.js",
+  "keywords": ["react", "material-ui", "timeline", "horizontal timeline"],
+  "homepage": "https://github.com/mailtop/horizontal-timeline",
+  "bugs": {
+    "url": "https://github.com/mailtop/horizontal-timeline/issues"
+  },
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --mode development",
-    "transpile": "babel src -d build --copy-files",
+    "transpile": "babel src -d dist --copy-files",
     "prepublishOnly": "yarn transpile"
   },
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "Guilherme Holz",
+    "email": "guilhermeoholz@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Rodrigo Ávila",
+      "email": "rodrigo@avila.net.br",
+      "url": "https://www.avila.net.br"
+    }
+  ],
+  "license": "MIT",
   "peerDependencies": {
     "@material-ui/core": "^3.9.3",
     "react": "^16.8.6",
@@ -38,13 +53,14 @@
     "prettier": "^1.16.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-icons": "^3.5.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1"
   },
   "dependencies": {
-    "react-icons": "^3.5.0",
+    "react-perfect-scrollbar": "^1.4.4",
     "typeface-roboto": "^0.0.54"
   }
 }
