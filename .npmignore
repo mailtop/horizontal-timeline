@@ -1,5 +1,6 @@
 src
 examples
+_config.yml
 .babelrc
 .editorconfig
 .eslintrc
