@@ -57,46 +57,33 @@ import { FaBug, FaRegCalendarCheck, FaRegFileAlt } from 'react-icons/fa'
 ### Timeline
 Renders a `div` with the same width as the parent element and creates a horizontal scrollbar according to the number of events
 
-**Props:**
-**# variant:**
-&nbsp;&nbsp;&nbsp;Defines what type of `Timeline` will be rendered. The screenshots above shows the `default`, `simple` and `small` respectively. When `small` or `simple` are choose, the event `title` and `subtitle` are shown on a tooltip and the `action`, if set, is fired when you click the circle
-**# height:**
-&nbsp;&nbsp;&nbsp;Set the size of the component. Default values, accordingly to `variant`:
-&nbsp;&nbsp;&nbsp;*-small:* `95px`
-&nbsp;&nbsp;&nbsp;*-simple:* `135px`
-&nbsp;&nbsp;&nbsp;*-default:* `265px`
-**# minEvents:**
-&nbsp;&nbsp;&nbsp;Used to render placeholders for events, if `placeholder` is set to `true`, as shown in the screenshots above
-**# maxEvents:**
-&nbsp;&nbsp;&nbsp;Limit the number of events showed on screen
-**# placeholder:**
-&nbsp;&nbsp;&nbsp;Create the placholders when `minEvents` is defined
+**Props:**  
+**# variant:** defines what type of `Timeline` will be rendered. The screenshots above shows the `default`, `simple` and `small` respectively. When `small` or `simple` are choose, the event `title` and `subtitle` are shown on a tooltip and the `action`, if set, is fired when you click the circle  
+**# height:** set the size of the component. Default values, accordingly to `variant`:  
+&nbsp;&nbsp;&nbsp;*-small:* `95px`  
+&nbsp;&nbsp;&nbsp;*-simple:* `135px`  
+&nbsp;&nbsp;&nbsp;*-default:* `265px`  
+**# minEvents:** used to render placeholders for events, if `placeholder` is set to `true`, as shown in the screenshots above  
+**# maxEvents:** limit the number of events showed on screen  
+**# placeholder:** create the placholders when `minEvents` is defined  
 
 ### TimelineEvent
 Renders events inside the `Timeline` wrapper. Any number of these can be created*
 
-**Props**
-**# color:**
-&nbsp;&nbsp;&nbsp;Set the color of the event. Default value: `#e0e0e0`
-**# icon:**
-&nbsp;&nbsp;&nbsp;Renders the icon that identifies the event
-**# title:**
-&nbsp;&nbsp;&nbsp;Renders the main text below the event
-**# subtitle:**
-&nbsp;&nbsp;&nbsp;Renders the secondary text below the event
-**# action:**
-&nbsp;&nbsp;&nbsp;An `Object` with two properties:
-&nbsp;&nbsp;&nbsp;*-label:* the text inside the button showed below the event
-&nbsp;&nbsp;&nbsp;*-onClick:* the action fired when the user click the button or the event, if `simple` or `small` is set to `true` in the `Timeline` component
+**Props**  
+**# color:** set the color of the event. Default value: `#e0e0e0`  
+**# icon:** renders the icon that identifies the event  
+**# title:** renders the main text below the event  
+**# subtitle:** renders the secondary text below the event  
+**# action:** an `Object` with two properties:  
+&nbsp;&nbsp;&nbsp;*-label:* the text inside the button showed below the event  
+&nbsp;&nbsp;&nbsp;*-onClick:* the action fired when the user click the button or the event, if `simple` or `small` is set to `true` in the `Timeline` component  
 
 **\*** *if* `maxEvents` *is set on the* `Timeline` *component, the number of events showed on screen will be limited to that ammount*
 
 
 ## Development
-1. Clone the repository
-```
-git clone git@github.com:mailtop/horizontal-timeline.git
-```
+1. Clone the repository `git clone git@github.com:mailtop/horizontal-timeline.git`
 2. Run `yarn start`
 3. Access `http://localhost:3001`*
 
