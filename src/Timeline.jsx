@@ -6,7 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import withStyles from '@material-ui/core/styles/withStyles'
 import 'react-perfect-scrollbar/dist/css/styles.css'
 import 'typeface-roboto'
-import { PlaceholderSimple, Placeholder } from './Placeholder'
+import { Placeholder, PlaceholderSimple, PlaceholderSmall } from './Placeholder'
 
 const styles = {
   wrapper: {
@@ -22,13 +22,47 @@ const styles = {
   }
 }
 
-const renderPlaceholders = quantity => {
+const renderPlaceholders = props => {
+  const {
+    classes,
+    difference: quantity,
+    variant = 'default',
+    childrenWithProps
+  } = props
+
   if (quantity) {
     const placeholders = []
     let index = 0
 
     while (index < quantity) {
-      placeholders.push(index)
+      switch (variant) {
+        case 'small':
+          placeholders.push(
+            <PlaceholderSmall
+              key={index}
+              first={index === 0}
+              quantity={childrenWithProps.length}
+            />
+          )
+          break
+        case 'simple':
+          placeholders.push(
+            <PlaceholderSimple
+              key={index}
+              first={index === 0}
+              quantity={childrenWithProps.length}
+            />
+          )
+          break
+        default:
+          placeholders.push(
+            <Grid key={index} className={classes.middle}>
+              <Placeholder />
+            </Grid>
+          )
+          break
+      }
+
       index++
     }
 
@@ -46,23 +80,28 @@ class Timeline extends Component {
     const {
       children,
       classes,
-      height = 265,
-      simple,
+      variant = 'default',
+      height = variant === 'small' ? 95 : variant === 'simple' ? 135 : 265,
       minEvents = 0,
       maxEvents = 0,
       placeholder
     } = this.props
     const difference = children ? minEvents - children.length : minEvents
-    const placeholders = renderPlaceholders(difference, simple)
     const childrenWithProps = children
       ? Children.map(children, (child, index) =>
           cloneElement(child, {
-            simple,
+            variant,
             placeholder,
             first: index === 0
           })
         )
       : []
+    const placeholders = renderPlaceholders({
+      classes,
+      difference,
+      variant,
+      childrenWithProps
+    })
 
     return (
       <Grid className={classes.wrapper} style={{ height }}>
@@ -78,7 +117,9 @@ class Timeline extends Component {
                         <Grid
                           className={classNames({
                             [classes.middle]:
-                              !simple && index > 0 && index < children.length
+                              variant === 'default' &&
+                              index > 0 &&
+                              index < children.length
                           })}
                         >
                           {child}
@@ -96,7 +137,9 @@ class Timeline extends Component {
                       key={index}
                       className={classNames({
                         [classes.middle]:
-                          !simple && index > 0 && index < children.length
+                          variant === 'default' &&
+                          index > 0 &&
+                          index < children.length
                       })}
                     >
                       {child}
@@ -105,25 +148,7 @@ class Timeline extends Component {
                 })}
               </Fragment>
             )}
-            {minEvents > 0 && difference > 0 && placeholder && (
-              <Fragment>
-                {placeholders.map(placeholder => (
-                  <Grid
-                    key={placeholder}
-                    className={classNames({ [classes.middle]: !simple })}
-                  >
-                    {simple ? (
-                      <PlaceholderSimple
-                        first={placeholder === 0}
-                        quantity={childrenWithProps.length}
-                      />
-                    ) : (
-                      <Placeholder />
-                    )}
-                  </Grid>
-                ))}
-              </Fragment>
-            )}
+            {minEvents > 0 && difference > 0 && placeholder && placeholders}
           </Grid>
         </PerfectScrollbar>
       </Grid>

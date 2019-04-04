@@ -8,11 +8,22 @@ const styles = {
   circleContainer: {
     marginRight: 31
   },
+  circleContainerSmall: {
+    marginRight: 11
+  },
   barSimple: {
     position: 'absolute',
     top: '50%',
     left: -31,
     width: 31,
+    height: 3,
+    backgroundColor: '#f2f2f2'
+  },
+  barSmall: {
+    position: 'absolute',
+    top: '50%',
+    left: -11,
+    width: 11,
     height: 3,
     backgroundColor: '#f2f2f2'
   }
@@ -42,6 +53,31 @@ const Simple = ({ classes, first, quantity }) => {
 }
 
 export const PlaceholderSimple = withStyles(styles)(Simple)
+
+const Small = ({ classes, first, quantity }) => {
+  const Bar = () => <div className={classes.barSmall} />
+
+  return (
+    <div className={classes.container}>
+      <div className={classes.circleContainerSmall}>
+        <svg width={32} height={32} viewBox='0 0 8.467 8.467'>
+          <circle
+            cx={4.233}
+            cy={292.767}
+            r={4.035}
+            fill='#f2f2f2'
+            stroke='#f2f2f2'
+            strokeWidth={0.397}
+            transform='translate(0 -288.533)'
+          />
+        </svg>
+      </div>
+      {quantity === 0 ? !first ? <Bar /> : null : <Bar />}
+    </div>
+  )
+}
+
+export const PlaceholderSmall = withStyles(styles)(Small)
 
 export const Placeholder = props => {
   return (
