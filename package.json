@@ -1,6 +1,6 @@
 {
   "name": "@mailtop/horizontal-timeline",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Horizontal timeline component",
   "keywords": ["react", "material-ui", "timeline", "horizontal timeline"],
   "homepage": "https://github.com/mailtop/horizontal-timeline",
