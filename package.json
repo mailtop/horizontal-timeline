@@ -1,6 +1,6 @@
 {
   "name": "@mailtop/horizontal-timeline",
-  "version": "1.3.1",
+  "version": "2.0.0",
   "description": "Horizontal timeline component",
   "keywords": [
     "react",
@@ -66,5 +66,7 @@
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.8.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "is-react": "^1.3.3"
+  }
 }
