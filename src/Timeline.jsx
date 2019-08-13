@@ -4,7 +4,6 @@ import PerfectScrollbar from 'react-perfect-scrollbar'
 import Grid from '@material-ui/core/Grid'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import withStyles from '@material-ui/core/styles/withStyles'
-import 'react-perfect-scrollbar/dist/css/styles.css'
 import { Placeholder, PlaceholderSimple, PlaceholderSmall } from './Placeholder'
 
 const styles = {

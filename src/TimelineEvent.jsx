@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import classNames from 'classnames'
+import isReact from 'is-react'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import Tooltip from '@material-ui/core/Tooltip'
@@ -61,6 +62,9 @@ const styles = {
     marginTop: -40,
     textAlign: 'center'
   },
+  actionContainer: {
+    margin: '16px auto',
+  },
   buttonContainer: {
     margin: '16px auto',
     textAlign: 'center'
@@ -78,7 +82,9 @@ const TimelineEvent = ({
   icon: Icon,
   title,
   subtitle,
-  action
+  action,
+  titleProps,
+  subtitleProps
 }) => {
   switch (variant) {
     case 'small':
@@ -199,19 +205,37 @@ const TimelineEvent = ({
               </g>
             </svg>
             <Grid className={classes.textContainer}>
-              <Typography variant='h6'>{title}</Typography>
-              <Typography variant='caption'>{subtitle}</Typography>
+              {typeof title === 'string' ? (
+                <Typography variant='h6' {...titleProps}>
+                  {title}
+                </Typography>
+              ) : (
+                title
+              )}
+              {typeof subtitle === 'string' ? (
+                <Typography variant='caption' {...subtitleProps}>
+                  {subtitle}
+                </Typography>
+              ) : (
+                subtitle
+              )}
             </Grid>
             {action && (
-              <Grid className={classes.buttonContainer}>
-                <Button
-                  size='small'
-                  onClick={action.onClick}
-                  className={classes.button}
-                  style={{ backgroundColor: color }}
-                >
-                  {action.label}
-                </Button>
+              <Grid className={classes.actionContainer}>
+                {isReact.compatible(action) ? (
+                  action
+                ) : (
+                  <Grid className={classes.buttonContainer}>
+                    <Button
+                      size='small'
+                      onClick={action.onClick}
+                      className={classes.button}
+                      style={{ backgroundColor: color }}
+                    >
+                      {action.label}
+                    </Button>
+                  </Grid>
+                )}
               </Grid>
             )}
           </Fragment>

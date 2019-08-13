@@ -73,9 +73,11 @@ Renders events inside the `Timeline` wrapper. Any number of these can be created
 **Props**  
 **# color:** set the color of the event. Default value: `#e0e0e0`  
 **# icon:** renders the icon that identifies the event  
-**# title:** renders the main text below the event  
-**# subtitle:** renders the secondary text below the event  
-**# action:** an `Object` with two properties:  
+**# title:** renders the main text below the event; if a `string` is provided, you can alter it's properties with the prop `titleProps` **OR** you can pass an `element type` - a React component or a HTML component - fully customized  
+**# titleProps:** an `object` containing any of the [`Typography` props](https://material-ui.com/pt/api/typography/) from `@material-ui`  
+**# subtitle:** renders the secondary text below the event; if a `string` is provided, you can alter it's properties with the prop `subtitleProps` **OR** you can pass an `element type` - a React component or a HTML element - fully customized  
+**# subtitleProps:** an `object` containing any of the [`Typography` props](https://material-ui.com/pt/api/typography/) from `@material-ui`  
+**# action:** the action may be an `element type` - a React component or a HTML element - **OR** an `object` with these two properties:  
 &nbsp;&nbsp;&nbsp;*-label:* the text inside the button showed below the event  
 &nbsp;&nbsp;&nbsp;*-onClick:* the action fired when the user click the button or the event, if `simple` or `small` is set to `true` in the `Timeline` component  
 
