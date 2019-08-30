@@ -32,7 +32,10 @@ const styles = {
     marginRight: 31
   },
   circleContainerSmall: {
-    marginRight: 11
+    display: 'flex',
+    flex: 'auto',
+    alignItems: 'center',
+    marginRight: 11,
   },
   action: {
     '&:hover': {

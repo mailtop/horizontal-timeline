@@ -1,6 +1,7 @@
 # horizontal-timeline
+## 2.0.2
+* Add flex style to the small variant
 ## 2.0.1
-* Add flex style to the wrapper div
 * Update dependencies
 ## 2.0.0 
 * **[BREAKING CHANGE]** Makes [`react-perfect-scrollbar`](https://github.com/goldenyz/react-perfect-scrollbar) a *peer dependency*
