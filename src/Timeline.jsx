@@ -9,7 +9,10 @@ import { Placeholder, PlaceholderSimple, PlaceholderSmall } from './Placeholder'
 const styles = {
   wrapper: {
     position: 'relative',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    display: 'flex',
+    flex: 'auto',
+    alignItems: 'center'
   },
   container: {
     display: 'inline-flex',
