@@ -1,4 +1,6 @@
 # horizontal-timeline
+## 2.0.3
+* Add the property `PerfectScrollbarProps` to the `Timeline` component
 ## 2.0.2
 * Add flex style to the small variant
 ## 2.0.1

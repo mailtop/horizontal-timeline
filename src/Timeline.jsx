@@ -82,7 +82,8 @@ class Timeline extends Component {
       height = variant === 'small' ? 95 : variant === 'simple' ? 135 : 265,
       minEvents = 0,
       maxEvents = 0,
-      placeholder
+      placeholder,
+      PerfectScrollbarProps
     } = this.props
     const difference = children ? minEvents - children.length : minEvents
     const childrenWithProps = children
@@ -103,7 +104,10 @@ class Timeline extends Component {
 
     return (
       <Grid className={classes.wrapper} style={{ height }}>
-        <PerfectScrollbar containerRef={element => (this.scrollbar = element)}>
+        <PerfectScrollbar
+          containerRef={element => (this.scrollbar = element)}
+          {...PerfectScrollbarProps}
+        >
           <CssBaseline />
           <Grid className={classes.container}>
             {maxEvents ? (
