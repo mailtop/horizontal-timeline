@@ -1,5 +1,5 @@
 import React, { Children, cloneElement, Component, Fragment } from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import Grid from '@material-ui/core/Grid'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -117,7 +117,7 @@ class Timeline extends Component {
                     <Fragment key={index}>
                       {index < maxEvents && (
                         <Grid
-                          className={classNames({
+                          className={clsx({
                             [classes.middle]:
                               variant === 'default' &&
                               index > 0 &&
@@ -137,7 +137,7 @@ class Timeline extends Component {
                   return (
                     <Grid
                       key={index}
-                      className={classNames({
+                      className={clsx({
                         [classes.middle]:
                           variant === 'default' &&
                           index > 0 &&

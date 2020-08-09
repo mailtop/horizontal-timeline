@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import isReact from 'is-react'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
@@ -105,7 +105,7 @@ const TimelineEvent = ({
             >
               <Grid
                 onClick={action && action.onClick}
-                className={classNames(classes.circleContainerSmall, {
+                className={clsx(classes.circleContainerSmall, {
                   [classes.action]: action
                 })}
               >
@@ -144,13 +144,13 @@ const TimelineEvent = ({
             >
               <Grid
                 onClick={action && action.onClick}
-                className={classNames(classes.circleContainer, {
+                className={clsx(classes.circleContainer, {
                   [classes.action]: action
                 })}
               >
                 {Icon && (
                   <Icon
-                    className={classNames(classes.icon, classes.iconSimple)}
+                    className={clsx(classes.icon, classes.iconSimple)}
                   />
                 )}
                 <svg viewBox='0 0 19.05 19.05' height={72} width={72}>
