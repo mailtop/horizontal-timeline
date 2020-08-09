@@ -1,4 +1,7 @@
 # horizontal-timeline
+## 2.0.4
+* Update dependencies
+* Replace `classnames` with `clsx`
 ## 2.0.3
 * Add the property `PerfectScrollbarProps` to the `Timeline` component
 ## 2.0.2
