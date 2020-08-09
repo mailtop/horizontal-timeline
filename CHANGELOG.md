@@ -1,5 +1,5 @@
 # horizontal-timeline
-## 2.0.4
+## 2.1.4
 * Update dependencies
 * Replace `classnames` with `clsx`
 ## 2.0.3
