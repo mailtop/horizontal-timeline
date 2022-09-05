@@ -233,7 +233,7 @@ const TimelineEvent = ({
                       size='small'
                       onClick={action.onClick}
                       className={classes.button}
-                      style={{ backgroundColor: color }}
+                      style={{ backgroundColor: color, ...action.style }}
                     >
                       {action.label}
                     </Button>
